@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import { getDatabase } from '../database/db';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
@@ -30,14 +30,17 @@ export default function HomeScreen({ navigation }: Props) {
   }, [navigation]);
 
   return (
-    <View style={{ padding: 20 }}>
-      <Button title="Cadastrar novo item" onPress={() => navigation.navigate('NovoItem')} />
+    <View style={styles.container}>
+      <Button
+        title="Cadastrar novo item"
+        onPress={() => navigation.navigate('NovoItem')}
+      />
       <FlatList
         data={itens}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={{ marginTop: 10 }}>
-            <Text style={{ fontWeight: 'bold' }}>{item.titulo}</Text>
+          <View style={styles.item}>
+            <Text style={styles.titulo}>{item.titulo}</Text>
             <Text>{item.descricao}</Text>
           </View>
         )}
@@ -45,3 +48,21 @@ export default function HomeScreen({ navigation }: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  item: {
+    marginTop: 10,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
+  titulo: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+});
