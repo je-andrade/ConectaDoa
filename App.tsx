@@ -2,6 +2,7 @@ import React, { JSX, useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import AppNavigator from './src/navigation/AppNavigator';
 import { setupDatabase } from './src/database/db';
+import Wallpaper from './src/components/Wallpaper';
 
 export default function App(): JSX.Element | null {
   const [pronto, setPronto] = useState(false);
@@ -19,7 +20,11 @@ export default function App(): JSX.Element | null {
     );
   }
 
-  return <AppNavigator />;
+  return (
+    <Wallpaper>
+        <AppNavigator />
+    </Wallpaper>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -33,5 +38,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     color: '#333',
+  },
+  background: {
+    flex: 1,
   },
 });

@@ -5,10 +5,12 @@ import { Text, View, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../screens/HomeScreen';
 import NewItemScreen from '../screens/NewItemScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 export type RootStackParamList = {
   Home: undefined;
   NovoItem: undefined;
+  About: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -41,14 +43,17 @@ export default function AppNavigator() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{
-            headerTitle: () => <HomeHeader />,
-          }}
+          options={{ headerTitle: () => <HomeHeader /> }}
         />
         <Stack.Screen
           name="NovoItem"
           component={NewItemScreen}
           options={{ title: 'Novo Item' }}
+        />
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+          options={{ title: 'Sobre o App' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
